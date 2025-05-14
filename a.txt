@@ -1,0 +1,55 @@
+1.Train Search and Seat Availability UI
+
+US UI 001
+
+As a user, I want to search for Train and get information if seats are available or not
+
+Acceptance Criteria "As part of 1 PBL UI: On the Navigation Bar, there is a hyperlink named " "Train Search and Seat Availability" " which when clicked will route you to " "Train Search and Seat Availability" " page.
+
+As a passenger, I want to search for trains based on my travel details and seamlessly check seat availability for the selected train during the search process.
+
+Acceptance Criteria:
+
+The train search page should display input fields for origin, destination and date.
+
+Upon entering these details and initiating the search, the system should display a list of available trains. For each train in the search results, there should be a clear indication of the availability of seats in different classes.
+
+Users should be able to expand or hover over each train to view more detailed seat availability information. Users should have the option to proceed with booking for the selected train directly from the search result.
+
+The system should provide a clear and accessible way for users to return to the search results if they decide to explore other trains."
+
+2. Ticket Booking UI
+
+As a user, I want to book tickets "As
+
+a user, after selecting a specific train and class, I want a seamless transition to ticket booking interface, allowing me to efficiently provide passenger details and complete the booking process.
+
+Acceptance Criteria:
+
+After selecting a train from the search results and choosing the preferred class, the system should navigate the user to the ticket booking page. I
+
+The ticket booking page should retain information about the selected train and class. Input fields should be provided for entering passenger details and selecting specific seats within the chosen class.
+
+Relevant error messages should be displayed for incomplete or Incorrect passenger information.
+
+The payment section should be collecting necessary details.
+
+Users should receive immediate confirmation of their booking, with a usually appealing summary of the ticket details.
+
+An option to return to the search results or explore other features should be accessible from the confirmation page."
+
+3. Search and Filter Booking History UI
+
+US UI 003
+
+As a user, I want to search and filter my booking history
+
+"As a user, I want a user-friendly interface to search and filter my booking history for efficient retrieval of information.
+
+Acceptance Criteria:
+
+The booking history page should have search and filter options, including date, train and booking status.
+
+Search results should be well-organized.
+
+Clear buttons or links should allow users to reset filters and return to the full booking history."
