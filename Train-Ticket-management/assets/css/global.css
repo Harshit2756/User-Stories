@@ -59,18 +59,6 @@ body {
     animation: fadeIn 1s ease-out;
 }
 
-.fade-in {
-    animation: fadeIn 1s ease-out;
-}
-
-.slide-up {
-    animation: slideInUp 1s ease-out;
-}
-
-.pulse {
-    animation: pulse 2s infinite;
-}
-
 /* Hero Section */
 .hero-section {
     padding: 80px 0;
@@ -203,40 +191,24 @@ body {
     transform: scale(1.1);
 }
 
-/* Dashbord cards */
-.stats-card {
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: var(--box-shadow);
-    transition: var(--transition-normal);
-}
-
-.stats-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-}
-
-.stats-card .card-body {
-    padding: 1.5rem;
-}
-
-.stats-icon {
-    font-size: 2.5rem;
+/* Contact Section */
+.contact-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: rgba(0, 86, 179, 0.1);
     color: var(--primary-color);
-}
-
-.stats-value {
-    font-size: 2rem;
-    font-weight: 700;
-}
-
-.card {
+    font-size: 1.8rem;
     transition: var(--transition-normal);
 }
 
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+.contact-item:hover .contact-icon {
+    background-color: var(--primary-color);
+    color: white;
+    transform: rotate(360deg);
 }
 
 /* Footer */
@@ -304,6 +276,130 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* Login and Registration Forms */
+.form-container {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+    padding: 2.5rem;
+    transition: var(--transition-normal);
+}
+
+.form-container:hover {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.form-control {
+    padding: 0.75rem 1.25rem;
+    border-radius: 5px;
+    transition: var(--transition-normal);
+}
+
+.form-control:focus {
+    box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.2);
+}
+
+.form-label {
+    font-weight: 500;
+}
+
+.form-text {
+    color: #6c757d;
+}
+
+/* Form validation styling */
+.form-control:valid {
+    border-color: inherit;
+}
+
+.form-control:invalid {
+    border-color: inherit;
+}
+
+.form-control:valid:focus {
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+    /* Bootstrap default */
+}
+
+.form-control:invalid:focus {
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+    /* Bootstrap default */
+}
+
+/* Use Bootstrap's is-valid and is-invalid classes instead */
+.form-control.is-valid {
+    border-color: #28a745;
+}
+
+.form-control.is-invalid {
+    border-color: #dc3545;
+}
+
+.form-control.is-valid:focus {
+    box-shadow: 0 0 0 0.25rem rgba(40, 167, 69, 0.25);
+}
+
+.form-control.is-invalid:focus {
+    box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
+}
+
+/* Dashboard Elements */
+.stats-card {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+    transition: var(--transition-normal);
+}
+
+.stats-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.stats-card .card-body {
+    padding: 1.5rem;
+}
+
+.stats-icon {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+}
+
+.stats-value {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+/* Tables */
+.table-container {
+    box-shadow: var(--box-shadow);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+.table thead th {
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #e9ecef;
+    font-weight: 600;
+    color: var(--primary-color);
+    padding: 12px 15px;
+}
+
+.table-hover tbody tr {
+    transition: var(--transition-normal);
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(0, 86, 179, 0.05);
+}
+
+/* Tickets table specific styles */
+#ticketsTableBody td {
+    padding: 10px 12px;
+    vertical-align: middle;
+}
+
 /* Button styles */
 .btn-action {
     width: 36px;
@@ -349,121 +445,51 @@ body {
     color: white;
 }
 
-/* Forms */
-.form-container {
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: var(--box-shadow);
-    padding: 2.5rem;
-    transition: var(--transition-normal);
+/* Animation Classes */
+.fade-in {
+    animation: fadeIn 1s ease-out;
 }
 
-.form-container:hover {
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+.slide-up {
+    animation: slideInUp 1s ease-out;
 }
 
-.form-control {
-    padding: 0.75rem 1.25rem;
-    border-radius: 5px;
-    transition: var(--transition-normal);
+.pulse {
+    animation: pulse 2s infinite;
 }
 
-.form-control:focus {
-    box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.2);
+
+
+/* Password strength meter */
+.progress-bar.bg-danger {
+    background-color: #dc3545 !important;
 }
 
-.form-label {
-    font-weight: 500;
+.progress-bar.bg-warning {
+    background-color: #ffc107 !important;
 }
 
-.form-text {
-    color: #6c757d;
+.progress-bar.bg-success {
+    background-color: #28a745 !important;
 }
 
-.form-control:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 0.25rem rgba(0, 86, 179, 0.25);
+/* Ticket status badges */
+.badge.bg-success {
+    background-color: #28a745 !important;
 }
 
-/* Custom checkbox styling */
-.form-check-input:checked {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
+.badge.bg-danger {
+    background-color: #dc3545 !important;
 }
 
-.form-check-input:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 0.25rem rgba(0, 86, 179, 0.25);
+.badge.bg-warning {
+    background-color: #ffc107 !important;
+    color: #212529;
 }
 
-/* Date picker styling */
-input[type="date"] {
-    background-color: white;
+.badge.bg-secondary {
+    background-color: #6c757d !important;
 }
-
-/* Select dropdown styling */
-.form-select:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 0.25rem rgba(0, 86, 179, 0.25);
-}
-
-/* Form validation styling */
-.form-control:valid {
-    border-color: inherit;
-}
-
-.form-control:invalid {
-    border-color: inherit;
-}
-
-.form-control:valid:focus {
-    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
-}
-
-.form-control:invalid:focus {
-    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
-}
-
-.form-control.is-valid {
-    border-color: #28a745;
-}
-
-.form-control.is-invalid {
-    border-color: #dc3545;
-}
-
-.form-control.is-valid:focus {
-    box-shadow: 0 0 0 0.25rem rgba(40, 167, 69, 0.25);
-}
-
-.form-control.is-invalid:focus {
-    box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
-}
-
-/* Tables */
-.table-container {
-    box-shadow: var(--box-shadow);
-    border-radius: 10px;
-    overflow: hidden;
-    margin-bottom: 2rem;
-}
-
-.table thead th {
-    background-color: #f8f9fa;
-    border-bottom: 2px solid #e9ecef;
-    font-weight: 600;
-    color: var(--primary-color);
-    padding: 12px 15px;
-}
-
-.table-hover tbody tr {
-    transition: var(--transition-normal);
-}
-
-.table-hover tbody tr:hover {
-    background-color: rgba(0, 86, 179, 0.05);
-}
-
 
 /* Modal transitions */
 .modal.fade .modal-dialog {
@@ -478,6 +504,12 @@ input[type="date"] {
 /* Custom field validation messages */
 .invalid-feedback {
     display: block;
+}
+
+/* Form focus states */
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(0, 86, 179, 0.25);
 }
 
 /* Alert messages */
@@ -515,6 +547,37 @@ input[type="date"] {
     color: #664d03;
 }
 
+/* Custom checkbox styling */
+.form-check-input:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.form-check-input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(0, 86, 179, 0.25);
+}
+
+/* Date picker styling */
+input[type="date"] {
+    background-color: white;
+}
+
+/* Select dropdown styling */
+.form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(0, 86, 179, 0.25);
+}
+
+/* Card hover effects */
+.card {
+    transition: var(--transition-normal);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
 
 /* Dashboard specific */
 .dashboard-wrapper {
@@ -524,6 +587,10 @@ input[type="date"] {
     padding-bottom: 3rem;
 }
 
+/* Chart containers */
+canvas {
+    max-width: 100%;
+}
 
 /* Button styles for ticket actions */
 .view-ticket-btn,
@@ -570,26 +637,6 @@ input[type="date"] {
     padding: 0.4em 0.65em;
     font-weight: 500;
     border-radius: 4px;
-}
-
-/* Ticket status badges */
-
-.badge.bg-success {
-    background-color: #28a745 !important;
-}
-
-.badge.bg-danger {
-    background-color: #dc3545 !important;
-    color: #dc3545;
-}
-
-.badge.bg-warning {
-    background-color: #ffc107 !important;
-    color: #212529;
-}
-
-.badge.bg-secondary {
-    background-color: #6c757d !important;
 }
 
 /* Empty tickets message styling */
