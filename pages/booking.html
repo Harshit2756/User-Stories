@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Booking - TrainConnect</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <h1>TrainConnect</h1>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="train-search.html">Train Search & Availability</a></li>
+                    <li><a href="booking-history.html">Booking History</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <div class="container">
+            <h1>Book Your Ticket</h1>
+            <p>Provide passenger details and complete your booking</p>
+        </div>
+    </div>
+
+    <section class="section-padding">
+        <div class="container">
+            <div id="booking-error" class="error-container" style="display: none;">
+                <p>Please select a train first by searching on the <a href="train-search.html">Train Search page</a>.
+                </p>
+            </div>
+
+            <div id="booking-content" class="booking-container">
+                <!-- Booking steps -->
+                <div class="booking-steps">
+                    <div class="step active" data-step="1">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Journey Details</div>
+                    </div>
+                    <div class="step" data-step="2">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Passenger Information</div>
+                    </div>
+                    <div class="step" data-step="3">
+                        <div class="step-number">3</div>
+                        <div class="step-title">Payment</div>
+                    </div>
+                    <div class="step" data-step="4">
+                        <div class="step-number">4</div>
+                        <div class="step-title">Confirmation</div>
+                    </div>
+                </div>
+
+                <!-- Journey details -->
+                <div class="booking-step-content" id="step-1">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Your Selected Journey</h2>
+                        </div>
+                        <div class="card-body">
+                            <div id="train-details">
+                                <!-- Train details will be loaded here -->
+                                <div class="loading">
+                                    <div class="spinner"></div>
+                                    <p>Loading train details...</p>
+                                </div>
+                            </div>
+
+                            <div class="form-container" id="class-selection">
+                                <h3>Select Travel Class</h3>
+                                <form id="class-form">
+                                    <div class="travel-classes">
+                                        <div class="travel-class" id="economy-class">
+                                            <input type="radio" id="economy" name="class" value="economy">
+                                            <label for="economy">
+                                                <div class="class-name">Economy</div>
+                                                <div class="class-price" id="economy-price">$45</div>
+                                                <div class="class-availability" id="economy-availability">120 seats
+                                                    available</div>
+                                                <div class="class-features">
+                                                    <span><i class="fas fa-wifi"></i> WiFi</span>
+                                                    <span><i class="fas fa-plug"></i> Power outlet</span>
+                                                </div>
+                                            </label>
+                                        </div>
+
+                                        <div class="travel-class" id="business-class">
+                                            <input type="radio" id="business" name="class" value="business">
+                                            <label for="business">
+                                                <div class="class-name">Business</div>
+                                                <div class="class-price" id="business-price">$85</div>
+                                                <div class="class-availability" id="business-availability">40 seats
+                                                    available</div>
+                                                <div class="class-features">
+                                                    <span><i class="fas fa-wifi"></i> Premium WiFi</span>
+                                                    <span><i class="fas fa-plug"></i> Power outlet</span>
+                                                    <span><i class="fas fa-utensils"></i> Complimentary meal</span>
+                                                    <span><i class="fas fa-tv"></i> Entertainment</span>
+                                                </div>
+                                            </label>
+                                        </div>
+
+                                        <div class="travel-class" id="firstClass-class">
+                                            <input type="radio" id="firstClass" name="class" value="firstClass">
+                                            <label for="firstClass">
+                                                <div class="class-name">First Class</div>
+                                                <div class="class-price" id="firstClass-price">$120</div>
+                                                <div class="class-availability" id="firstClass-availability">15 seats
+                                                    available</div>
+                                                <div class="class-features">
+                                                    <span><i class="fas fa-wifi"></i> Premium WiFi</span>
+                                                    <span><i class="fas fa-plug"></i> Power outlet</span>
+                                                    <span><i class="fas fa-utensils"></i> Gourmet meals</span>
+                                                    <span><i class="fas fa-tv"></i> Premium entertainment</span>
+                                                    <span><i class="fas fa-glass-martini-alt"></i> Complimentary
+                                                        drinks</span>
+                                                    <span><i class="fas fa-couch"></i> Extra spacious seats</span>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-actions">
+                                        <a href="train-search.html" class="btn btn-secondary">Back to Search</a>
+                                        <button type="button" id="btn-continue-to-step-2"
+                                            class="btn btn-primary">Continue</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Passenger details -->
+                <div class="booking-step-content" id="step-2" style="display: none;">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Passenger Information</h2>
+                        </div>
+                        <div class="card-body">
+                            <form id="passenger-form">
+                                <div id="passengers-container">
+                                    <div class="passenger-card" data-passenger-id="1">
+                                        <h3>Passenger 1</h3>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label for="passenger-1-name">Full Name</label>
+                                                <input type="text" id="passenger-1-name" name="passenger-1-name"
+                                                    required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="passenger-1-age">Age</label>
+                                                <input type="number" id="passenger-1-age" name="passenger-1-age" min="1"
+                                                    max="120" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label for="passenger-1-gender">Gender</label>
+                                                <select id="passenger-1-gender" name="passenger-1-gender" required>
+                                                    <option value="">Select Gender</option>
+                                                    <option value="male">Male</option>
+                                                    <option value="female">Female</option>
+                                                    <option value="other">Other</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="passenger-1-id-type">ID Type</label>
+                                                <select id="passenger-1-id-type" name="passenger-1-id-type" required>
+                                                    <option value="">Select ID Type</option>
+                                                    <option value="passport">Passport</option>
+                                                    <option value="drivingLicense">Driving License</option>
+                                                    <option value="nationalId">National ID</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="passenger-1-id-number">ID Number</label>
+                                                <input type="text" id="passenger-1-id-number"
+                                                    name="passenger-1-id-number" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="passenger-actions">
+                                    <button type="button" id="btn-add-passenger" class="btn btn-secondary">
+                                        <i class="fas fa-user-plus"></i> Add Another Passenger
+                                    </button>
+                                </div>
+
+                                <div class="contact-information">
+                                    <h3>Contact Information</h3>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="contact-email">Email</label>
+                                            <input type="email" id="contact-email" name="contact-email" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="contact-phone">Phone</label>
+                                            <input type="tel" id="contact-phone" name="contact-phone" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-actions">
+                                    <button type="button" id="btn-back-to-step-1"
+                                        class="btn btn-secondary">Back</button>
+                                    <button type="button" id="btn-continue-to-step-3" class="btn btn-primary">Continue
+                                        to Payment</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Payment -->
+                <div class="booking-step-content" id="step-3" style="display: none;">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Payment Information</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="booking-summary" id="booking-summary">
+                                <!-- Booking summary will be displayed here -->
+                            </div>
+
+                            <form id="payment-form">
+                                <div class="payment-methods">
+                                    <h3>Select Payment Method</h3>
+                                    <div class="payment-method-options">
+                                        <div class="payment-method active" data-method="card">
+                                            <input type="radio" id="method-card" name="payment-method" value="card"
+                                                checked>
+                                            <label for="method-card">
+                                                <i class="fas fa-credit-card"></i>
+                                                <span>Credit/Debit Card</span>
+                                            </label>
+                                        </div>
+                                        <div class="payment-method" data-method="paypal">
+                                            <input type="radio" id="method-paypal" name="payment-method" value="paypal">
+                                            <label for="method-paypal">
+                                                <i class="fab fa-paypal"></i>
+                                                <span>PayPal</span>
+                                            </label>
+                                        </div>
+                                        <div class="payment-method" data-method="bank">
+                                            <input type="radio" id="method-bank" name="payment-method" value="bank">
+                                            <label for="method-bank">
+                                                <i class="fas fa-university"></i>
+                                                <span>Bank Transfer</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="payment-details" id="card-details">
+                                    <h3>Card Details</h3>
+                                    <div class="form-group">
+                                        <label for="card-number">Card Number</label>
+                                        <input type="text" id="card-number" name="card-number"
+                                            placeholder="1234 5678 9012 3456" required>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="card-name">Cardholder Name</label>
+                                            <input type="text" id="card-name" name="card-name" placeholder="John Doe"
+                                                required>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="card-expiry">Expiry Date</label>
+                                            <input type="text" id="card-expiry" name="card-expiry" placeholder="MM/YY"
+                                                required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="card-cvv">CVV</label>
+                                            <input type="text" id="card-cvv" name="card-cvv" placeholder="123" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="payment-details" id="paypal-details" style="display: none;">
+                                    <h3>PayPal</h3>
+                                    <p>You will be redirected to PayPal to complete your payment after clicking
+                                        "Complete Booking".</p>
+                                </div>
+
+                                <div class="payment-details" id="bank-details" style="display: none;">
+                                    <h3>Bank Transfer</h3>
+                                    <p>Please transfer the total amount to the following bank account:</p>
+                                    <div class="bank-info">
+                                        <p><strong>Bank Name:</strong> TrainConnect Bank</p>
+                                        <p><strong>Account Number:</strong> 1234567890</p>
+                                        <p><strong>Routing Number:</strong> 987654321</p>
+                                        <p><strong>Reference:</strong> Your booking reference will be provided after
+                                            submission</p>
+                                    </div>
+                                </div>
+
+                                <div class="form-actions">
+                                    <button type="button" id="btn-back-to-step-2"
+                                        class="btn btn-secondary">Back</button>
+                                    <button type="button" id="btn-complete-booking" class="btn btn-primary">Complete
+                                        Booking</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Confirmation -->
+                <div class="booking-step-content" id="step-4" style="display: none;">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Booking Confirmed</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="confirmation-message">
+                                <div class="confirmation-icon">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <h3>Thank You for Your Booking!</h3>
+                                <p>Your booking has been confirmed and tickets have been reserved.</p>
+                                <p>A confirmation email has been sent to <span id="confirmation-email">your
+                                        email</span>.</p>
+                            </div>
+
+                            <div class="booking-details" id="confirmation-details">
+                                <!-- Booking details will be displayed here -->
+                            </div>
+
+                            <div class="form-actions confirmation-actions">
+                                <a href="booking-history.html" class="btn btn-secondary">View All Bookings</a>
+                                <a href="train-search.html" class="btn btn-primary">Book Another Train</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>TrainConnect</h2>
+                    <p>Your journey, our priority</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="dashboard.html">Dashboard</a></li>
+                        <li><a href="train-search.html">Train Search</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-envelope"></i> support@trainconnect.com</p>
+                    <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 TrainConnect. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/booking.js"></script>
+</body>
+
+</html>

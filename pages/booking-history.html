@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking History - TrainConnect</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <h1>TrainConnect</h1>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="train-search.html">Train Search & Availability</a></li>
+                    <li><a href="booking-history.html">Booking History</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <div class="container">
+            <h1>Your Booking History</h1>
+            <p>View and manage your train bookings</p>
+        </div>
+    </div>
+
+    <section class="section-padding">
+        <div class="container">
+            <div class="filter-container">
+                <div class="search-box">
+                    <input type="text" id="booking-search" placeholder="Search bookings...">
+                    <button id="search-btn" class="btn btn-primary">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+
+                <div class="filter-controls">
+                    <div class="filter-item">
+                        <label for="filter-date">Filter by Date</label>
+                        <input type="date" id="filter-date">
+                    </div>
+
+                    <div class="filter-item">
+                        <label for="filter-train">Filter by Train</label>
+                        <select id="filter-train">
+                            <option value="">All Trains</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-item">
+                        <label for="filter-status">Filter by Status</label>
+                        <select id="filter-status">
+                            <option value="">All Statuses</option>
+                            <option value="confirmed">Confirmed</option>
+                            <option value="completed">Completed</option>
+                            <option value="cancelled">Cancelled</option>
+                        </select>
+                    </div>
+
+                    <button id="reset-filters" class="btn btn-secondary">Reset Filters</button>
+                </div>
+            </div>
+
+            <div class="booking-history-container">
+                <div id="booking-count" class="booking-count">
+                    <!-- Booking count will be displayed here -->
+                </div>
+
+                <div id="bookings-list" class="bookings-list">
+                    <!-- Bookings will be loaded here -->
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        <p>Loading your bookings...</p>
+                    </div>
+                </div>
+
+                <div id="no-bookings" class="no-bookings" style="display: none;">
+                    <div class="empty-state">
+                        <i class="fas fa-ticket-alt"></i>
+                        <h3>No Bookings Found</h3>
+                        <p>You don't have any bookings yet or none match your filters.</p>
+                        <a href="train-search.html" class="btn btn-primary">Book a Train</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Details Modal -->
+    <div id="booking-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Booking Details</h2>
+                <span class="modal-close">&times;</span>
+            </div>
+            <div class="modal-body" id="booking-details">
+                <!-- Booking details will be displayed here -->
+            </div>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>TrainConnect</h2>
+                    <p>Your journey, our priority</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="dashboard.html">Dashboard</a></li>
+                        <li><a href="train-search.html">Train Search</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-envelope"></i> support@trainconnect.com</p>
+                    <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 TrainConnect. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/booking-history.js"></script>
+</body>
+
+</html>

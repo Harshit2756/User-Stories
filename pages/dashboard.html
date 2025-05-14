@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - TrainConnect</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <h1>TrainConnect</h1>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="train-search.html">Train Search & Availability</a></li>
+                    <li><a href="booking-history.html">Booking History</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <div class="container">
+            <h1>Your Dashboard</h1>
+            <p>Welcome to your TrainConnect dashboard - manage your journey</p>
+        </div>
+    </div>
+
+    <section class="section-padding">
+        <div class="container">
+            <div class="dashboard-container">
+                <div class="dashboard-card">
+                    <div class="dashboard-card-header">
+                        <h2 class="dashboard-card-title">Quick Search</h2>
+                        <div class="dashboard-card-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                    </div>
+                    <div class="form-container">
+                        <form id="dashboard-search-form" action="train-search.html" method="get">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="from">From</label>
+                                    <select id="from" name="from" required>
+                                        <option value="">Select Origin</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="to">To</label>
+                                    <select id="to" name="to" required>
+                                        <option value="">Select Destination</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="date">Date of Journey</label>
+                                <input type="date" id="date" name="date" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Search Trains</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="dashboard-card-header">
+                        <h2 class="dashboard-card-title">Recent Bookings</h2>
+                        <div class="dashboard-card-icon">
+                            <i class="fas fa-ticket-alt"></i>
+                        </div>
+                    </div>
+                    <div id="recent-bookings">
+                        <div class="loading">
+                            <div class="spinner"></div>
+                            <p>Loading your recent bookings...</p>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="booking-history.html" class="btn btn-secondary">View All Bookings</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <div class="dashboard-card-header">
+                    <h2 class="dashboard-card-title">Popular Destinations</h2>
+                    <div class="dashboard-card-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                </div>
+                <div class="popular-destinations">
+                    <div class="destination-cards">
+                        <div class="destination-card" onclick="navigateToSearch('New York', 'Washington DC')">
+                            <h3>New York to Washington DC</h3>
+                            <p>Express trains available daily</p>
+                            <p class="price">Starting at $45</p>
+                        </div>
+                        <div class="destination-card" onclick="navigateToSearch('Boston', 'New York')">
+                            <h3>Boston to New York</h3>
+                            <p>Frequent connections throughout the day</p>
+                            <p class="price">Starting at $35</p>
+                        </div>
+                        <div class="destination-card" onclick="navigateToSearch('Chicago', 'Denver')">
+                            <h3>Chicago to Denver</h3>
+                            <p>Scenic route with comfortable seating</p>
+                            <p class="price">Starting at $75</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>TrainConnect</h2>
+                    <p>Your journey, our priority</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="train-search.html">Train Search</a></li>
+                        <li><a href="booking-history.html">Booking History</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-envelope"></i> support@trainconnect.com</p>
+                    <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 TrainConnect. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/dashboard.js"></script>
+</body>
+
+</html>
