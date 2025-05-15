@@ -143,103 +143,243 @@ const StorageManager = {
         if (!this.get('trains')) {
             const defaultTrains = [
                 {
-                    id: 't1',
-                    name: 'Express 101',
-                    number: 'EX101',
-                    from: 'New York',
-                    to: 'Washington DC',
-                    departureTime: '08:30',
-                    arrivalTime: '12:30',
-                    duration: '4h 0m',
+                    id: 'T001',
+                    name: 'Western Express',
+                    number: 'WX101',
+                    from: 'Surat',
+                    to: 'Mumbai',
+                    departureTime: '07:00',
+                    arrivalTime: '10:00',
+                    duration: '3h 0m',
                     price: {
-                        economy: 45,
-                        business: 85,
-                        firstClass: 120
+                        economy: 300,
+                        business: 600,
+                        firstClass: 900
                     },
                     availability: {
-                        economy: 120,
-                        business: 40,
-                        firstClass: 15
+                        economy: 100,
+                        business: 20,
+                        firstClass: 0 // unavailable
                     }
                 },
                 {
-                    id: 't2',
-                    name: 'Coastal Line',
-                    number: 'CL202',
-                    from: 'Boston',
-                    to: 'New York',
-                    departureTime: '09:15',
-                    arrivalTime: '12:45',
-                    duration: '3h 30m',
+                    id: 'T002',
+                    name: 'Sabarmati Superfast',
+                    number: 'SS102',
+                    from: 'Surat',
+                    to: 'Ahmedabad',
+                    departureTime: '08:30',
+                    arrivalTime: '11:30',
+                    duration: '3h 0m',
                     price: {
-                        economy: 35,
-                        business: 65,
-                        firstClass: 95
+                        economy: 250,
+                        business: 550,
+                        firstClass: 850
                     },
                     availability: {
-                        economy: 80,
-                        business: 25,
+                        economy: 0, // unavailable
+                        business: 10,
+                        firstClass: 5
+                    }
+                },
+                {
+                    id: 'T003',
+                    name: 'Pune Intercity',
+                    number: 'PI103',
+                    from: 'Surat',
+                    to: 'Pune',
+                    departureTime: '06:00',
+                    arrivalTime: '10:30',
+                    duration: '4h 30m',
+                    price: {
+                        economy: 350,
+                        business: 700,
+                        firstClass: 1050
+                    },
+                    availability: {
+                        economy: 50,
+                        business: 0, // unavailable
                         firstClass: 10
                     }
                 },
                 {
-                    id: 't3',
-                    name: 'Western Express',
-                    number: 'WE303',
-                    from: 'Chicago',
-                    to: 'Denver',
-                    departureTime: '10:00',
-                    arrivalTime: '16:30',
-                    duration: '6h 30m',
+                    id: 'T004',
+                    name: 'Mumbai Express',
+                    number: 'MX104',
+                    from: 'Mumbai',
+                    to: 'Surat',
+                    departureTime: '09:00',
+                    arrivalTime: '12:00',
+                    duration: '3h 0m',
                     price: {
-                        economy: 75,
-                        business: 130,
-                        firstClass: 190
+                        economy: 300,
+                        business: 600,
+                        firstClass: 900
                     },
                     availability: {
-                        economy: 150,
-                        business: 60,
+                        economy: 80,
+                        business: 25,
+                        firstClass: 15
+                    }
+                },
+                {
+                    id: 'T005',
+                    name: 'Mumbai-Ahmedabad Mail',
+                    number: 'MA105',
+                    from: 'Mumbai',
+                    to: 'Ahmedabad',
+                    departureTime: '10:00',
+                    arrivalTime: '15:00',
+                    duration: '5h 0m',
+                    price: {
+                        economy: 400,
+                        business: 750,
+                        firstClass: 1100
+                    },
+                    availability: {
+                        economy: 0,
+                        business: 15,
+                        firstClass: 8
+                    }
+                },
+                {
+                    id: 'T006',
+                    name: 'Deccan Queen',
+                    number: 'DQ106',
+                    from: 'Mumbai',
+                    to: 'Pune',
+                    departureTime: '07:15',
+                    arrivalTime: '10:00',
+                    duration: '2h 45m',
+                    price: {
+                        economy: 200,
+                        business: 450,
+                        firstClass: 700
+                    },
+                    availability: {
+                        economy: 120,
+                        business: 50,
                         firstClass: 20
                     }
                 },
                 {
-                    id: 't4',
-                    name: 'Southern Railway',
-                    number: 'SR404',
-                    from: 'Atlanta',
-                    to: 'Miami',
-                    departureTime: '07:45',
-                    arrivalTime: '14:15',
-                    duration: '6h 30m',
+                    id: 'T007',
+                    name: 'Ahmedabad Express',
+                    number: 'AE107',
+                    from: 'Ahmedabad',
+                    to: 'Surat',
+                    departureTime: '06:45',
+                    arrivalTime: '09:45',
+                    duration: '3h 0m',
                     price: {
-                        economy: 65,
-                        business: 120,
-                        firstClass: 180
+                        economy: 250,
+                        business: 500,
+                        firstClass: 800
                     },
                     availability: {
-                        economy: 95,
-                        business: 35,
-                        firstClass: 12
+                        economy: 0,
+                        business: 0,
+                        firstClass: 0 // all full
                     }
                 },
                 {
-                    id: 't5',
-                    name: 'Pacific Bullet',
-                    number: 'PB505',
-                    from: 'Los Angeles',
-                    to: 'San Francisco',
-                    departureTime: '11:30',
-                    arrivalTime: '14:45',
-                    duration: '3h 15m',
+                    id: 'T008',
+                    name: 'Gujarat Queen',
+                    number: 'GQ108',
+                    from: 'Ahmedabad',
+                    to: 'Mumbai',
+                    departureTime: '12:00',
+                    arrivalTime: '17:00',
+                    duration: '5h 0m',
                     price: {
-                        economy: 55,
-                        business: 95,
-                        firstClass: 150
+                        economy: 420,
+                        business: 770,
+                        firstClass: 1200
                     },
                     availability: {
-                        economy: 110,
+                        economy: 100,
+                        business: 25,
+                        firstClass: 0
+                    }
+                },
+                {
+                    id: 'T009',
+                    name: 'Pune Fast',
+                    number: 'PF109',
+                    from: 'Ahmedabad',
+                    to: 'Pune',
+                    departureTime: '05:30',
+                    arrivalTime: '12:30',
+                    duration: '7h 0m',
+                    price: {
+                        economy: 500,
+                        business: 900,
+                        firstClass: 1300
+                    },
+                    availability: {
+                        economy: 60,
+                        business: 10,
+                        firstClass: 5
+                    }
+                },
+                {
+                    id: 'T010',
+                    name: 'Pune Express',
+                    number: 'PE110',
+                    from: 'Pune',
+                    to: 'Surat',
+                    departureTime: '11:15',
+                    arrivalTime: '15:45',
+                    duration: '4h 30m',
+                    price: {
+                        economy: 350,
+                        business: 700,
+                        firstClass: 1050
+                    },
+                    availability: {
+                        economy: 30,
+                        business: 0,
+                        firstClass: 2
+                    }
+                },
+                {
+                    id: 'T011',
+                    name: 'Pune-Mumbai Local',
+                    number: 'PM111',
+                    from: 'Pune',
+                    to: 'Mumbai',
+                    departureTime: '06:45',
+                    arrivalTime: '09:15',
+                    duration: '2h 30m',
+                    price: {
+                        economy: 180,
+                        business: 400,
+                        firstClass: 650
+                    },
+                    availability: {
+                        economy: 100,
                         business: 40,
-                        firstClass: 15
+                        firstClass: 0
+                    }
+                },
+                {
+                    id: 'T012',
+                    name: 'Ahmedabad Intercity',
+                    number: 'AI112',
+                    from: 'Pune',
+                    to: 'Ahmedabad',
+                    departureTime: '07:00',
+                    arrivalTime: '14:00',
+                    duration: '7h 0m',
+                    price: {
+                        economy: 480,
+                        business: 850,
+                        firstClass: 1250
+                    },
+                    availability: {
+                        economy: 0,
+                        business: 20,
+                        firstClass: 10
                     }
                 }
             ];
@@ -248,10 +388,7 @@ const StorageManager = {
 
         // Initialize cities data if not present
         if (!this.get('cities')) {
-            const defaultCities = [
-                'New York', 'Washington DC', 'Boston', 'Chicago',
-                'Denver', 'Atlanta', 'Miami', 'Los Angeles', 'San Francisco'
-            ];
+            const defaultCities = ['Surat', 'Mumbai', 'Ahmedabad', 'Pune'];
             this.set('cities', defaultCities);
         }
 

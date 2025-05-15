@@ -19,8 +19,25 @@ document.addEventListener('DOMContentLoaded', function () {
         performSearch(fromParam, toParam, dateParam);
     }
 
-    // Add modal styles
-    addModalStyles();
+    // Add reset button functionality
+    const resetBtn = document.getElementById('reset-btn');
+    resetBtn.addEventListener('click', function () {
+        // Reset the date input to today's date
+        const dateInput = document.getElementById('date');
+
+        // Clear search results and show initial message
+        const searchResults = document.getElementById('search-results');
+        searchResults.innerHTML = `
+            <div class="initial-message">
+                <p>Enter your travel details above to search for trains</p>
+            </div>
+        `;
+
+        // Clear URL parameters
+        window.history.pushState({}, '', window.location.pathname);
+    });
+
+
 });
 
 // Initialize search form with city options
@@ -236,8 +253,6 @@ function performSearch(from, to, date) {
                 });
             });
 
-            // Add custom styling for train cards
-            addTrainCardStyles();
         }
     }, 1000); // Simulate network delay
 }
@@ -389,299 +404,4 @@ function navigateToBooking(trainId, date) {
     window.location.href = `booking.html?train=${trainId}&date=${date}`;
 }
 
-// Add styles for train cards
-function addTrainCardStyles() {
-    const styles = `
-        .results-header {
-            margin-bottom: 20px;
-        }
-        
-        .results-header h2 {
-            margin-bottom: 10px;
-        }
-        
-        .train-list {
-            margin-top: 20px;
-        }
-        
-        .train-card {
-            margin-bottom: 25px;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-        
-        .train-details {
-            display: flex;
-            justify-content: space-between;
-            padding: 15px 0;
-        }
-        
-        .btn-details {
-            background: none;
-            border: none;
-            color: #007bff;
-            cursor: pointer;
-            font-weight: 500;
-            padding: 5px 10px;
-            border-radius: 4px;
-            transition: background-color 0.2s;
-        }
-        
-        .btn-details:hover {
-            background-color: rgba(0, 123, 255, 0.1);
-        }
-        
-        .train-line {
-            display: flex;
-            align-items: center;
-            margin-top: 5px;
-        }
-        
-        .train-dot {
-            width: 8px;
-            height: 8px;
-            background-color: #007bff;
-            border-radius: 50%;
-        }
-        
-        .train-dot-line {
-            flex-grow: 1;
-            height: 2px;
-            background-color: #007bff;
-            margin: 0 5px;
-        }
-        
-        .no-results {
-            text-align: center;
-            padding: 30px;
-            background-color: #f8f9fa;
-            border-radius: 8px;
-            margin-top: 20px;
-        }
-        
-        .no-results p:first-child {
-            font-size: 18px;
-            font-weight: 500;
-            margin-bottom: 10px;
-        }
-    `;
 
-    const styleElement = document.createElement('style');
-    styleElement.textContent = styles;
-    document.head.appendChild(styleElement);
-}
-
-// Add modal styles
-function addModalStyles() {
-    const styles = `
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.5);
-            animation: fadeIn 0.3s;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        .modal-content {
-            background-color: #fff;
-            margin: 50px auto;
-            width: 90%;
-            max-width: 800px;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            animation: slideIn 0.3s;
-        }
-        
-        @keyframes slideIn {
-            from { transform: translateY(-50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        
-        .modal-header {
-            padding: 15px 20px;
-            background-color: #f8f9fa;
-            border-bottom: 1px solid #eee;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .modal-header h2 {
-            margin: 0;
-            font-size: 20px;
-        }
-        
-        .modal-close {
-            color: #aaa;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        
-        .modal-close:hover {
-            color: #333;
-        }
-        
-        .modal-body {
-            padding: 20px;
-        }
-        
-        .train-modal-info {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-        
-        .train-route {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        
-        .train-station {
-            text-align: center;
-            flex: 0 0 auto;
-        }
-        
-        .train-station h3 {
-            margin-bottom: 5px;
-        }
-        
-        .train-journey-line {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 0 20px;
-        }
-        
-        .journey-line {
-            width: 100%;
-            height: 2px;
-            background-color: #007bff;
-            position: relative;
-        }
-        
-        .journey-duration {
-            margin-top: 10px;
-            font-weight: 500;
-        }
-        
-        .train-features h3, .train-classes h3 {
-            margin-bottom: 15px;
-        }
-        
-        .feature-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-        
-        .feature-list li {
-            display: flex;
-            align-items: center;
-            flex: 1 0 45%;
-            min-width: 150px;
-        }
-        
-        .feature-list li i {
-            margin-right: 10px;
-            color: #007bff;
-        }
-        
-        .class-details {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        
-        .class-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px;
-            background-color: #f8f9fa;
-            border-radius: 8px;
-        }
-        
-        .class-price {
-            font-weight: bold;
-            font-size: 18px;
-            color: #007bff;
-        }
-        
-        .availability-bar {
-            width: 150px;
-            height: 8px;
-            background-color: #e9ecef;
-            border-radius: 4px;
-            overflow: hidden;
-            margin-bottom: 5px;
-        }
-        
-        .availability-fill {
-            height: 100%;
-            background-color: #28a745;
-        }
-        
-        .train-modal-actions {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-        
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .train-route {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            .train-journey-line {
-                width: 100%;
-                flex-direction: row;
-                padding: 10px 0;
-            }
-            
-            .journey-line {
-                height: 100%;
-                width: 2px;
-            }
-            
-            .journey-duration {
-                margin-top: 0;
-                margin-left: 10px;
-            }
-            
-            .class-item {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .class-availability {
-                margin-top: 10px;
-                width: 100%;
-            }
-            
-            .availability-bar {
-                width: 100%;
-            }
-        }
-    `;
-
-    const styleElement = document.createElement('style');
-    styleElement.textContent = styles;
-    document.head.appendChild(styleElement);
-} 

@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // Initialize the dashboard components
     initializeSearchForm();
     loadRecentBookings();
-    setupDestinationCards();
 });
 
 // Initialize search form with city options
@@ -137,61 +136,7 @@ function loadRecentBookings() {
     }, 800); // Simulate loading time
 }
 
-// Set up destination cards click events
-function setupDestinationCards() {
-    // Add custom CSS for destination cards
-    const style = document.createElement('style');
-    style.innerHTML = `
-        .destination-cards {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-top: 20px;
-        }
-        
-        .destination-card {
-            flex: 1;
-            min-width: 250px;
-            padding: 20px;
-            border-radius: 8px;
-            background-color: #f8f9fa;
-            border: 1px solid #eee;
-            cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .destination-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        .destination-card h3 {
-            margin-bottom: 10px;
-            color: #333;
-        }
-        
-        .destination-card p {
-            color: #666;
-            margin-bottom: 10px;
-        }
-        
-        .destination-card .price {
-            font-weight: 600;
-            color: #007bff;
-        }
-        
-        .empty-state {
-            text-align: center;
-            padding: 30px 0;
-        }
-        
-        .empty-state p {
-            margin-bottom: 20px;
-            color: #666;
-        }
-    `;
-    document.head.appendChild(style);
-}
+
 
 // Navigate to search page with pre-filled form
 function navigateToSearch(from, to) {

@@ -20,9 +20,7 @@ The system should provide a clear and accessible way for users to return to the 
 
 2. Ticket Booking UI
 
-As a user, I want to book tickets "As
-
-a user, after selecting a specific train and class, I want a seamless transition to ticket booking interface, allowing me to efficiently provide passenger details and complete the booking process.
+As a user, I want to book tickets "As a user, after selecting a specific train and class, I want a seamless transition to ticket booking interface, allowing me to efficiently provide passenger details and complete the booking process.
 
 Acceptance Criteria:
 

@@ -1,0 +1,359 @@
+.train-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.train-card-header {
+    background-color: #f8f9fa;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.train-name {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.train-card-body {
+    padding: 15px;
+}
+
+.train-details {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.train-time,
+.train-duration,
+.train-price {
+    text-align: center;
+}
+
+.train-time h3,
+.train-duration h3,
+.train-price h3 {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.train-time p,
+.train-price p {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.train-duration p {
+    font-size: 16px;
+}
+
+.seat-availability {
+    margin-top: 15px;
+}
+
+.seat-availability h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.seat-types {
+    display: flex;
+    gap: 15px;
+}
+
+.seat-type {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.seat-type h4 {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.seat-type p {
+    font-weight: 600;
+}
+
+.seat-available {
+    color: #28a745;
+}
+
+.seat-limited {
+    color: #ffc107;
+}
+
+.seat-unavailable {
+    color: #dc3545;
+}
+
+.train-card-footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-top: 1px solid #ddd;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 50px auto;
+    width: 90%;
+    max-width: 800px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    animation: slideIn 0.3s;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-header {
+    padding: 15px 20px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.modal-close {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.modal-close:hover {
+    color: #333;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.train-modal-info {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.train-route {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.train-station {
+    text-align: center;
+    flex: 0 0 auto;
+}
+
+.train-station h3 {
+    margin-bottom: 5px;
+}
+
+.train-journey-line {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.journey-line {
+    width: 100%;
+    height: 2px;
+    background-color: #007bff;
+    position: relative;
+}
+
+.journey-duration {
+    margin-top: 10px;
+    font-weight: 500;
+}
+
+.train-features h3,
+.train-classes h3 {
+    margin-bottom: 15px;
+}
+
+.feature-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.feature-list li {
+    display: flex;
+    align-items: center;
+    flex: 1 0 45%;
+    min-width: 150px;
+}
+
+.feature-list li i {
+    margin-right: 10px;
+    color: #007bff;
+}
+
+.class-details {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.class-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.class-price {
+    font-weight: bold;
+    font-size: 18px;
+    color: #007bff;
+}
+
+.availability-bar {
+    width: 150px;
+    height: 8px;
+    background-color: #e9ecef;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 5px;
+}
+
+.availability-fill {
+    height: 100%;
+    background-color: #28a745;
+}
+
+.train-modal-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.results-header {
+    margin-bottom: 20px;
+}
+
+.results-header h2 {
+    margin-bottom: 10px;
+}
+
+.train-list {
+    margin-top: 20px;
+}
+
+.train-card {
+    margin-bottom: 25px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.train-details {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0;
+}
+
+.btn-details {
+    background: none;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+    font-weight: 500;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.btn-details:hover {
+    background-color: rgba(0, 123, 255, 0.1);
+}
+
+.train-line {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.train-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #007bff;
+    border-radius: 50%;
+}
+
+.train-dot-line {
+    flex-grow: 1;
+    height: 2px;
+    background-color: #007bff;
+    margin: 0 5px;
+}
+
+.no-results {
+    text-align: center;
+    padding: 30px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.no-results p:first-child {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}

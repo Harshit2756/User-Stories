@@ -1,14 +1,6 @@
 // Booking History functionality
 document.addEventListener('DOMContentLoaded', function () {
-    // Add CSS styles
-    addBookingHistoryStyles();
 
-    // Initialize booking history
-    initializeBookingHistory();
-});
-
-// Initialize booking history page
-function initializeBookingHistory() {
     // Load bookings from storage
     loadBookings();
 
@@ -17,7 +9,8 @@ function initializeBookingHistory() {
 
     // Set up modal
     setupBookingModal();
-}
+});
+
 
 // Load bookings from storage and display them
 function loadBookings(filters = {}) {
@@ -359,7 +352,7 @@ function showBookingDetails(bookingId) {
                         </div>
                         <div class="passenger-info-item">
                             <span>ID Type:</span>
-                            <strong>${passenger.idType === 'nationalId' ? 'National ID' : passenger.idType === 'drivingLicense' ? 'Driving License' : 'Passport'}</strong>
+                            <strong>${passenger.idType === 'aadharCard' ? 'aadhar card' : passenger.idType === 'drivingLicense' ? 'Driving License' : 'Passport'}</strong>
                         </div>
                         <div class="passenger-info-item">
                             <span>ID Number:</span>
@@ -390,7 +383,10 @@ function showBookingDetails(bookingId) {
             
             <div class="booking-detail-footer">
                 ${booking.status === 'confirmed' ? `<button class="btn btn-danger" id="modal-cancel-booking" data-booking-id="${booking.id}">Cancel Booking</button>` : ''}
-                <button class="btn btn-secondary modal-close-btn">Close</button>
+                <div class="booking-actions">
+                    <button class="btn btn-primary" id="print-booking"><i class="fas fa-print"></i> Print</button>
+                    <button class="btn btn-secondary modal-close-btn">Close</button>
+                </div>
             </div>
         `;
     } else {
@@ -427,7 +423,10 @@ function showBookingDetails(bookingId) {
             
             <div class="booking-detail-footer">
                 ${booking.status === 'confirmed' ? `<button class="btn btn-danger" id="modal-cancel-booking" data-booking-id="${booking.id}">Cancel Booking</button>` : ''}
-                <button class="btn btn-secondary modal-close-btn">Close</button>
+                <div class="booking-actions">
+                    <button class="btn btn-primary" id="print-booking"><i class="fas fa-print"></i> Print</button>
+                    <button class="btn btn-secondary modal-close-btn">Close</button>
+                </div>
             </div>
         `;
     }
@@ -444,6 +443,13 @@ function showBookingDetails(bookingId) {
         });
     }
 
+    const printBtn = document.getElementById('print-booking');
+    if (printBtn) {
+        printBtn.addEventListener('click', function () {
+            printBookingDetails();
+        });
+    }
+
     const closeModalBtn = document.querySelector('.modal-close-btn');
     if (closeModalBtn) {
         closeModalBtn.addEventListener('click', function () {
@@ -453,6 +459,81 @@ function showBookingDetails(bookingId) {
 
     // Show the modal
     modal.style.display = 'block';
+}
+
+// Print booking details
+function printBookingDetails() {
+    const modalContent = document.getElementById('booking-details').innerHTML;
+
+    const printWindow = window.open('', '_blank');
+    printWindow.document.write(`
+        <html>
+        <head>
+            <title>Booking Details - TrainConnect</title>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    padding: 20px;
+                    color: #333;
+                }
+                .booking-detail-header {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-bottom: 20px;
+                }
+                .badge {
+                    padding: 5px 10px;
+                    border-radius: 20px;
+                    font-size: 12px;
+                    font-weight: 500;
+                    color: white;
+                }
+                .badge-confirmed { background-color: #28a745; }
+                .badge-completed { background-color: #007bff; }
+                .badge-cancelled { background-color: #dc3545; }
+                .booking-detail-section {
+                    margin-bottom: 25px;
+                }
+                .booking-detail-section h3 {
+                    margin-bottom: 15px;
+                    padding-bottom: 5px;
+                    border-bottom: 1px solid #eee;
+                }
+                .journey-details, .ticket-details, .passenger-item {
+                    background-color: #f8f9fa;
+                    padding: 15px;
+                    border-radius: 8px;
+                    margin-bottom: 15px;
+                }
+                .booking-detail-footer, .booking-actions {
+                    display: none;
+                }
+                @media print {
+                    .booking-actions {
+                        display: none !important;
+                    }
+                }
+            </style>
+        </head>
+        <body>
+            <div id="printable-content">
+                <h1 style="text-align: center; margin-bottom: 30px;">TrainConnect Booking Details</h1>
+                ${modalContent}
+            </div>
+            <script>
+                window.onload = function() {
+                    window.print();
+                    setTimeout(function(){
+                        window.close();
+                    }, 500);
+                };
+            </script>
+        </body>
+        </html>
+    `);
+    printWindow.document.close();
 }
 
 // Cancel a booking
@@ -495,378 +576,3 @@ function cancelBooking(bookingId) {
     // Reload bookings
     loadBookings();
 }
-
-// Add styles for booking history page
-function addBookingHistoryStyles() {
-    const styles = `
-        .filter-container {
-            background-color: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 30px;
-        }
-        
-        .search-box {
-            display: flex;
-            margin-bottom: 20px;
-        }
-        
-        .search-box input {
-            flex: 1;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 4px 0 0 4px;
-            font-size: 16px;
-        }
-        
-        .search-box button {
-            border-radius: 0 4px 4px 0;
-        }
-        
-        .filter-controls {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            align-items: flex-end;
-        }
-        
-        .filter-item {
-            flex: 1;
-            min-width: 200px;
-        }
-        
-        .filter-item label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-        
-        .filter-item select, .filter-item input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 16px;
-        }
-        
-        .booking-count {
-            margin-bottom: 20px;
-            font-size: 16px;
-            color: #666;
-        }
-        
-        .bookings-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 20px;
-        }
-        
-        .booking-card {
-            background-color: #fff;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .booking-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        .booking-card-header {
-            padding: 15px;
-            background-color: #f8f9fa;
-            border-bottom: 1px solid #eee;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .booking-card-header h3 {
-            margin: 0;
-            font-size: 18px;
-        }
-        
-        .badge {
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 500;
-            text-transform: capitalize;
-        }
-        
-        .badge-confirmed {
-            background-color: #28a745;
-            color: #fff;
-        }
-        
-        .badge-completed {
-            background-color: #007bff;
-            color: #fff;
-        }
-        
-        .badge-cancelled {
-            background-color: #dc3545;
-            color: #fff;
-        }
-        
-        .booking-card-body {
-            padding: 15px;
-        }
-        
-        .booking-route {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 15px;
-        }
-        
-        .route-from, .route-to {
-            font-weight: 500;
-        }
-        
-        .route-arrow {
-            color: #007bff;
-        }
-        
-        .booking-details {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-        
-        .booking-detail-item {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            font-size: 14px;
-        }
-        
-        .booking-detail-item i {
-            color: #007bff;
-        }
-        
-        .booking-price {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 15px;
-            border-top: 1px solid #eee;
-        }
-        
-        .booking-price strong {
-            font-size: 18px;
-            color: #007bff;
-        }
-        
-        .booking-card-footer {
-            padding: 15px;
-            background-color: #f8f9fa;
-            border-top: 1px solid #eee;
-            display: flex;
-            justify-content: space-between;
-        }
-        
-        .empty-state {
-            text-align: center;
-            padding: 40px 0;
-        }
-        
-        .empty-state i {
-            font-size: 48px;
-            color: #ccc;
-            margin-bottom: 20px;
-        }
-        
-        .empty-state h3 {
-            margin-bottom: 10px;
-        }
-        
-        .empty-state p {
-            margin-bottom: 20px;
-            color: #666;
-        }
-        
-        /* Modal Styles */
-        .booking-detail-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        
-        .booking-ref strong {
-            font-size: 16px;
-        }
-        
-        .booking-detail-section {
-            margin-bottom: 25px;
-        }
-        
-        .booking-detail-section h3 {
-            margin-bottom: 15px;
-            padding-bottom: 5px;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .journey-details {
-            background-color: #f8f9fa;
-            padding: 15px;
-            border-radius: 8px;
-        }
-        
-        .train-info {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
-        }
-        
-        .train-name {
-            font-weight: 600;
-        }
-        
-        .journey-route {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        
-        .station-time {
-            font-weight: 600;
-            font-size: 16px;
-        }
-        
-        .journey-duration {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 0 20px;
-        }
-        
-        .duration-line {
-            width: 100%;
-            height: 2px;
-            background-color: #007bff;
-            position: relative;
-        }
-        
-        .duration-time {
-            margin-top: 10px;
-            font-size: 14px;
-            color: #666;
-        }
-        
-        .passenger-list {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        
-        .passenger-item {
-            background-color: #f8f9fa;
-            padding: 15px;
-            border-radius: 8px;
-        }
-        
-        .passenger-header {
-            margin-bottom: 10px;
-        }
-        
-        .passenger-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 10px;
-        }
-        
-        .passenger-info-item {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .contact-info {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        
-        .contact-info-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .contact-info-item i {
-            color: #007bff;
-        }
-        
-        .booking-detail-footer {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #eee;
-        }
-        
-        .ticket-details {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            background-color: #f8f9fa;
-            padding: 15px;
-            border-radius: 8px;
-        }
-        
-        .ticket-class, .ticket-price, .ticket-total {
-            display: flex;
-            justify-content: space-between;
-        }
-        
-        .ticket-total {
-            margin-top: 10px;
-            padding-top: 10px;
-            border-top: 1px solid #ddd;
-            font-size: 18px;
-        }
-        
-        @media (max-width: 768px) {
-            .bookings-list {
-                grid-template-columns: 1fr;
-            }
-            
-            .filter-controls {
-                flex-direction: column;
-            }
-            
-            .filter-item {
-                width: 100%;
-            }
-            
-            .journey-route {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            .journey-duration {
-                width: 100%;
-                flex-direction: row;
-            }
-            
-            .duration-line {
-                height: 100%;
-                width: 2px;
-            }
-            
-            .duration-time {
-                margin-top: 0;
-                margin-left: 10px;
-            }
-        }
-    `;
-
-    const styleElement = document.createElement('style');
-    styleElement.textContent = styles;
-    document.head.appendChild(styleElement);
-} 

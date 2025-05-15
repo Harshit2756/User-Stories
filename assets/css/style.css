@@ -160,7 +160,7 @@ ul {
     flex: 1;
     min-width: 300px;
     padding: 30px;
-    background-color: #f8f9fa;
+    background-color: #ddeeff;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
     text-align: center;
@@ -287,42 +287,6 @@ ul {
     border-top: 1px solid #444;
 }
 
-/* Responsive Styles */
-@media (max-width: 768px) {
-    .main-header .container {
-        flex-direction: column;
-    }
-
-    .logo {
-        margin-bottom: 15px;
-    }
-
-    .main-nav ul {
-        justify-content: center;
-    }
-
-    .main-nav ul li {
-        margin: 0 10px;
-    }
-
-    .hero-content h1 {
-        font-size: 36px;
-    }
-
-    .hero-buttons {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .feature-card {
-        min-width: 100%;
-    }
-
-    .footer-content>div {
-        flex: 0 0 100%;
-    }
-}
-
 /* Form Styles */
 .form-container {
     max-width: 800px;
@@ -431,40 +395,6 @@ table tr:hover {
     color: #fff;
 }
 
-/* Dashboard Styles */
-.dashboard-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    padding: 30px 0;
-}
-
-.dashboard-card {
-    flex: 1;
-    min-width: 300px;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-}
-
-.dashboard-card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.dashboard-card-title {
-    font-size: 20px;
-    color: #333;
-}
-
-.dashboard-card-icon {
-    font-size: 24px;
-    color: #007bff;
-}
-
 /* Section Padding */
 .section-padding {
     padding: 80px 0;
@@ -487,113 +417,6 @@ table tr:hover {
     font-size: 18px;
     max-width: 600px;
     margin: 0 auto;
-}
-
-/* Train Search Results */
-.train-card {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    overflow: hidden;
-}
-
-.train-card-header {
-    background-color: #f8f9fa;
-    padding: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #ddd;
-}
-
-.train-name {
-    font-size: 18px;
-    font-weight: 600;
-}
-
-.train-card-body {
-    padding: 15px;
-}
-
-.train-details {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 15px;
-}
-
-.train-time,
-.train-duration,
-.train-price {
-    text-align: center;
-}
-
-.train-time h3,
-.train-duration h3,
-.train-price h3 {
-    font-size: 16px;
-    color: #666;
-    margin-bottom: 5px;
-}
-
-.train-time p,
-.train-price p {
-    font-size: 18px;
-    font-weight: 600;
-}
-
-.train-duration p {
-    font-size: 16px;
-}
-
-.seat-availability {
-    margin-top: 15px;
-}
-
-.seat-availability h3 {
-    font-size: 16px;
-    margin-bottom: 10px;
-}
-
-.seat-types {
-    display: flex;
-    gap: 15px;
-}
-
-.seat-type {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    text-align: center;
-}
-
-.seat-type h4 {
-    font-size: 14px;
-    margin-bottom: 5px;
-}
-
-.seat-type p {
-    font-weight: 600;
-}
-
-.seat-available {
-    color: #28a745;
-}
-
-.seat-limited {
-    color: #ffc107;
-}
-
-.seat-unavailable {
-    color: #dc3545;
-}
-
-.train-card-footer {
-    display: flex;
-    justify-content: space-between;
-    padding: 15px;
-    background-color: #f8f9fa;
-    border-top: 1px solid #ddd;
 }
 
 /* Toast/Alert Styles */
